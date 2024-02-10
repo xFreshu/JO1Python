@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dane ofiar zabójstw 2013-2022</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column; /* Elementy ułożone kolumnowo */
+            align-items: center; /* Wyśrodkowanie poziome */
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            max-width: 600px; /* Maksymalna szerokość kontenera */
+            margin-bottom: 40px; /* Odstęp pomiędzy elementami */
+            text-align: center; /* Tekst wyśrodkowany */
+        }
+        .chart-description {
+            margin-top: 10px; /* Odstęp od wykresu */
+            font-size: 14px; /* Rozmiar czcionki opisu */
+        }
+        h2 {
+            margin: 20px 0; /* Odstępy dla nagłówków */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Dane ofiar zabójstw w Polsce 2013-2022</h1>
+
+    <div class="container">
+        <h2>Ofiary zabójstw rok do roku</h2>
+        <canvas id="victimsChart"></canvas>
+        <div class="chart-description">
+            Wykres przedstawia zmiany w liczbie ofiar zabójstw w Polsce na przestrzeni lat 2013-2022. Można zaobserwować tendencję do spadku liczby ofiar w ostatnich latach.
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Ofiary zabójstw według grup wiekowych</h2>
+        <canvas id="ageGroupChart"></canvas>
+        <div class="chart-description">
+            Wykres ilustruje rozkład liczby ofiar zabójstw w Polsce według grup wiekowych. Daje to wgląd w to, które grupy wiekowe są najbardziej narażone na skutki przestępstw tego typu.
+        </div>
+    </div>
+
+    <script>
+        const data = JSON.parse('{{ data | safe }}');
+        const ctx = document.getElementById('victimsChart').getContext('2d');
+        const ageCtx = document.getElementById('ageGroupChart').getContext('2d');
+
+        // Wykres roczny
+        const victimsChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: data.years,
+                datasets: [{
+                    label: 'Liczba ofiar zabójstw',
+                    data: data.victims,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }]
+            }
+        });
+
+        // Wykres według grup wiekowych
+        const ageGroupChart = new Chart(ageCtx, {
+            type: 'bar',
+            data: {
+                labels: data.ageGroups,
+                datasets: [{
+                    label: 'Liczba ofiar zabójstw',
+                    data: data.ageGroupVictims,
+                    backgroundColor: 'rgb(255, 99, 132)',
+                }]
+            }
+        });
+    </script>
+
+</body>
+</html>

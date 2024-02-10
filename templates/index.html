@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Strona główna</title>
+</head>
+<body>
+   <div class="container">
+        <h1>Witaj na stronie głównej</h1>
+        <div>
+            <a href="{{ url_for('login') }}"><button>Zaloguj się</button></a>
+            <a href="{{ url_for('register') }}"><button>Zarejestruj się</button></a>
+        </div>
+    </div>
+</body>
+</html>
