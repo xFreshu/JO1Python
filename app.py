@@ -21,6 +21,8 @@ login_manager.login_view = 'login'  # Nazwa funkcji widoku logowania
 # Model użytkownika
 from models import User
 
+
+# Funkcja do wczytywania użytkownika
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))

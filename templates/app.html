@@ -11,28 +11,30 @@
             margin: 0;
             padding: 20px;
             display: flex;
-            flex-direction: column; /* Elementy ułożone kolumnowo */
-            align-items: center; /* Wyśrodkowanie poziome */
+            flex-direction: column;
+            align-items: center;
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
         }
         .container {
             width: 80%;
-            max-width: 600px; /* Maksymalna szerokość kontenera */
-            margin-bottom: 40px; /* Odstęp pomiędzy elementami */
-            text-align: center; /* Tekst wyśrodkowany */
+            max-width: 600px;
+            margin-bottom: 40px;
+            text-align: center;
         }
         .chart-description {
-            margin-top: 10px; /* Odstęp od wykresu */
-            font-size: 14px; /* Rozmiar czcionki opisu */
+            margin-top: 10px;
+            font-size: 14px;
         }
         h2 {
-            margin: 20px 0; /* Odstępy dla nagłówków */
+            margin: 20px 0;
         }
     </style>
 </head>
 <body>
-
+    <div class="logout-container" style="position: absolute; top: 20px; right: 20px;">
+        <a href="{{ url_for('logout') }}" class="logout-button" style="padding: 10px 20px; background-color: #f44336; color: white; text-decoration: none; border-radius: 5px;">Wyloguj</a>
+    </div>
     <h1>Dane ofiar zabójstw w Polsce 2013-2022</h1>
 
     <div class="container">
@@ -70,7 +72,7 @@
             }
         });
 
-        // Wykres według grup wiekowych
+        // Wykres grup wiekowych
         const ageGroupChart = new Chart(ageCtx, {
             type: 'bar',
             data: {
@@ -83,6 +85,5 @@
             }
         });
     </script>
-
 </body>
 </html>
